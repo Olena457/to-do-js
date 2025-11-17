@@ -1,4 +1,5 @@
 import { defaultAppState, hydrateState } from "../data/defaultAppState.js";
+
 const KEY_STORAGE = 'viteTodoAppState';
 export function saveState(state) {
     try {

@@ -1,0 +1,48 @@
+export function todoItem(todo, { onDelete, onEdit, onToggleComplete }) {
+    const itemDiv = document.createElement('div');
+    itemDiv.id = `task-${todo.id}`;
+    itemDiv.id.className = `todo-item ${
+      todo.completed ? "completed" : ""
+    } priority-${todo.priority} animate__animated animate__fadeIn`;
+const statusIcon = todo.completed
+  ? `<i class="fa-solid fa-circle-check" title="Done"></i>`
+        : `<i class="fa-solid fa-circle" title="Active"></i>`;
+    
+    itemDiv.innerHTML = `
+        <div class="todo-main">
+            <button class="toggle-complete-btn">${statusIcon}</button>
+            
+            <div class="todo-details">
+                <span class="todo-title">${todo.title}</span>
+                <p class="todo-description">${todo.description}</p>
+                <span class="todo-due-date">📅 ${todo.dueDate}</span>
+            </div>
+            
+            <div class="todo-actions">
+                <button class="edit-btn" title="Редагувати">
+                    <i class="fa-solid fa-pen"></i> Редагувати
+                </button>
+                
+                <button class="delete-btn" title="Видалити">
+                    <i class="fa-solid fa-trash"></i> Видалити
+                </button>
+            </div>
+        </div>
+    `;
+    //complete
+    itemDiv
+      .querySelector(".toggle-complete-btn")
+      .addEventListener("click", () => {
+        onToggleComplete(todo.id);
+      });
+    // edit
+    itemDiv.querySelector(".edit-btn").addEventListener("click", () => {
+      onEdit(todo.id);
+    });
+    //delete
+    itemDiv.querySelector(".delete-btn").addEventListener("click", () => {
+      onDelete(todo.id);
+    });
+
+    return itemDiv;
+}
