@@ -4,10 +4,38 @@
     <meta charset="UTF-8" />
     <link rel="icon" type="image/svg+xml" href="/vite.svg" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>to-do-js</title>
+    <title>Todo JS</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css">
   </head>
   <body>
-    <div id="app"></div>
+    <div id="app">
+      <main id="add-task-container" class="add-task-container">
+        <section class="todo-section">
+          <h2 id="current-project-name" class="typing">Task</h2>
+          <div id="add-task-container" class="add-task-container">
+            <form id="add-task-form">
+              <input type="text" id="task-title" placeholder="Name task" require>
+              <textarea placeholder="description" id="task-description" class="">"Description" </textarea>
+              <div class="form-row">
+                <label for="task-date">Term:</label>
+                <input type="date" id="task-date">
+
+
+                <label for="task-priority">Priority:</label>
+                <select name="" id="task-priority" class="">
+                  <option value="low">low</option>
+                  <option value="medium">Medium</option>
+                  <option value="high">High</option>
+                </select>
+              </div>
+              <button type="submit" class="button">Save</button>
+            </form>
+            <div id="todo-list" class="todo-list"></div>
+          </div>
+        </section>
+      </main>
+    </div>
     <script type="module" src="/src/main.js"></script>
   </body>
 </html>
