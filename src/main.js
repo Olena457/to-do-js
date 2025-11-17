@@ -1,3 +1,4 @@
+
 import "./style.css";
 import { loadState } from "./utils/storage.js";
 import {
@@ -5,6 +6,7 @@ import {
   handleAddTodo,
   handleToggleComplete,
   handleDeleteTodo,
+  handleEditTodo,
 } from "./logic/todoAction.js";
 
 let appState = loadState();
@@ -18,16 +20,19 @@ const DOM = {
   greeting: document.querySelector(".greeting"),
 };
 
-renderTodos(appState, DOM, {
+const handlers = {
   handleAddTodo,
   handleDeleteTodo,
   handleToggleComplete,
-});
+  handleEditTodo,
+};
+
+renderTodos(appState, DOM, handlers);
 
 document.addEventListener("DOMContentLoaded", function () {
   if (DOM.addTaskForm) {
     DOM.addTaskForm.addEventListener("submit", (event) => {
-      handleAddTodo(event, appState, DOM);
+      handleAddTodo(event, appState, DOM, handlers);
     });
   }
 

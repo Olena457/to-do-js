@@ -1,9 +1,29 @@
+
 import { saveState } from "../utils/storage";
 import { createTodo } from "../models/createTodo.js";
 import { todoItem } from "../components/todoItem.js";
 
-function getCurrentProject(appState) {
-  return appState.projects.find((p) => p.id === appState.currentProjectId);
+export function handleEditTodo(
+  taskId,
+  newTitle,
+  newDescription,
+  newDueDate,
+  newPriority,
+  appState,
+  DOM,
+  handlers
+) {
+  const todo = appState.todos.find((t) => t.id === taskId);
+
+  if (todo) {
+    todo.title = newTitle;
+    todo.description = newDescription;
+    todo.dueDate = newDueDate;
+    todo.priority = newPriority;
+
+    saveState(appState);
+    renderTodos(appState, DOM, handlers);
+  }
 }
 
 export function renderTodos(appState, DOM, handlers) {
@@ -11,19 +31,31 @@ export function renderTodos(appState, DOM, handlers) {
 
   todoListContainer.innerHTML = "";
 
-  const project = getCurrentProject(appState);
-  if (!project) return;
+  const todos = appState.todos;
 
-  currentProjectName.textContent = project.name;
+  if (currentProjectName) {
+    currentProjectName.textContent = "Tasks";
+  }
 
-  if (project.todos.length === 0) {
+  if (todos.length === 0) {
     todoListContainer.innerHTML =
       '<p class="empty-state animate__animated animate__fadeIn"> Empty. Create new task!</p>';
     return;
   }
 
-  project.todos.forEach((todo) => {
+  todos.forEach((todo) => {
     const itemElement = todoItem(todo, {
+      onEdit: (id, title, desc, date, priority) =>
+        handlers.handleEditTodo(
+          id,
+          title,
+          desc,
+          date,
+          priority,
+          appState,
+          DOM,
+          handlers
+        ),
       onDelete: (id) => handlers.handleDeleteTodo(id, appState, DOM, handlers),
       onToggleComplete: (id) =>
         handlers.handleToggleComplete(id, appState, DOM, handlers),
@@ -32,7 +64,7 @@ export function renderTodos(appState, DOM, handlers) {
   });
 }
 
-export function handleAddTodo(event, appState, DOM) {
+export function handleAddTodo(event, appState, DOM, handlers) {
   event.preventDefault();
 
   const { addTaskForm, addTaskContainer } = DOM;
@@ -45,32 +77,24 @@ export function handleAddTodo(event, appState, DOM) {
   if (!title) return alert("Name task required");
 
   const newTodo = createTodo(title, description, dueDate, priority);
-  const project = getCurrentProject(appState);
 
-  if (project) {
-    project.todos.unshift(newTodo);
-    saveState(appState);
-    renderTodos(appState, DOM, {
-      handleAddTodo,
-      handleDeleteTodo,
-      handleToggleComplete,
-    });
+  appState.todos.unshift(newTodo);
+  saveState(appState);
 
-    addTaskForm.reset();
-    addTaskContainer.classList.remove("active");
-  }
+  renderTodos(appState, DOM, handlers);
+
+  addTaskForm.reset();
+  addTaskContainer.classList.remove("active");
 }
 
 export function handleDeleteTodo(taskId, appState, DOM, handlers) {
   const taskElement = document.getElementById(`task-${taskId}`);
-  const project = getCurrentProject(appState);
 
-  if (taskElement && project) {
+  if (taskElement) {
     taskElement.classList.add("animate__animated", "animate__tada");
 
     setTimeout(() => {
-      taskElement.remove();
-      project.todos = project.todos.filter((todo) => todo.id !== taskId);
+      appState.todos = appState.todos.filter((todo) => todo.id !== taskId);
       saveState(appState);
       renderTodos(appState, DOM, handlers);
     }, 1500);
@@ -78,10 +102,8 @@ export function handleDeleteTodo(taskId, appState, DOM, handlers) {
 }
 
 export function handleToggleComplete(taskId, appState, DOM, handlers) {
-  const project = getCurrentProject(appState);
-  if (!project) return;
+  const todo = appState.todos.find((t) => t.id === taskId);
 
-  const todo = project.todos.find((t) => t.id === taskId);
   if (todo) {
     todo.completed = !todo.completed;
     saveState(appState);
