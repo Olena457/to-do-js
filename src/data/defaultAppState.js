@@ -26,7 +26,7 @@ export const defaultAppState = {
   isCreatingProject: false,
 };
 export function hydrateData(data) {
-    if (!data || !data.projects) return initialData;
+    if (!data || !data.projects) return defaultAppState;
     data.projects = data.projects.map(projData => {
         const project = restoreProject(projData);
 
@@ -36,4 +36,3 @@ export function hydrateData(data) {
     });
     return data;
 }
- export { defaultAppState };

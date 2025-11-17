@@ -5,34 +5,48 @@
     <link rel="icon" type="image/svg+xml" href="/vite.svg" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Todo JS</title>
+    
+    <link rel="stylesheet" href="style.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css">
   </head>
   <body>
     <div id="app">
-      <main id="add-task-container" class="add-task-container">
+      <header class="header">
+        <h1 class="greeting">Vite Todo App</h1>
+        <button id="show-add-task-btn" title="Addnew task">
+            <i class="fa-solid fa-plus"></i> Add
+        </button>
+      </header>
+
+      <main class="main-content">
         <section class="todo-section">
-          <h2 id="current-project-name" class="typing">Task</h2>
+          
+          <h2 id="current-project-name" class="typing">Tasks</h2>
+
           <div id="add-task-container" class="add-task-container">
             <form id="add-task-form">
-              <input type="text" id="task-title" placeholder="Name task" require>
-              <textarea placeholder="description" id="task-description" class="">"Description" </textarea>
+              <input type="text" id="task-title" placeholder="Name task" required>
+              <textarea placeholder="Description" id="task-description"></textarea>
+              
               <div class="form-row">
-                <label for="task-date">Term:</label>
-                <input type="date" id="task-date">
-
+                <label for="task-due-date">Term:</label>
+                <input type="date" id="task-due-date"> 
 
                 <label for="task-priority">Priority:</label>
-                <select name="" id="task-priority" class="">
-                  <option value="low">low</option>
-                  <option value="medium">Medium</option>
+                <select id="task-priority">
+                  <option value="low">Low</option>
+                  <option value="medium" selected>Medium</option>
                   <option value="high">High</option>
                 </select>
               </div>
-              <button type="submit" class="button">Save</button>
+              <button type="submit">Save</button>
             </form>
-            <div id="todo-list" class="todo-list"></div>
           </div>
+          
+          <div id="todo-list" class="todo-list">
+            </div>
+
         </section>
       </main>
     </div>
