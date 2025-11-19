@@ -8,7 +8,7 @@
   body {
     font-family: Arial, sans-serif;
     min-height: 100vh;
-    background-color: #cccc;
+    background-color: #ccc;
     color: #333;
   }
 
@@ -20,7 +20,6 @@
   }
 
   .header {
-    background-color: #00bed6;
     background-color: #ffff00;
     border-radius: 12px;
     border-bottom: 1px solid #666;
@@ -31,7 +30,7 @@
     display: flex;
     justify-content: space-between;
     align-items: center;
-      box-shadow: 0 2px 6px rgba(0,0,0,0.1); 
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
 
   }
 
@@ -188,11 +187,13 @@
     border-radius: 8px;
     box-sizing: border-box;
   }
+  
   #add-task-form input:focus,
 #add-task-form textarea:focus,
 #add-task-form select:focus {
     border: 2px solid #999;
-    box-shadow: 0 2px 6px rgba(238, 246, 3, 0.635); 
+    background-color: rgba(238, 239, 243, 1);
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
   outline: none;         
   
 }
@@ -237,7 +238,7 @@
 
   #add-task-form button[type="submit"]:hover {
     border-color: #ffff00;
-    background-color:#ccc;
+  background-color: rgba(214, 222, 233, 1);
     box-shadow: 0 6px 10px rgba(0, 0, 0, 0.15);
   }
 
@@ -245,11 +246,11 @@
 .todo-item {
   background-color: white;
   border-radius: 12px;
-  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
   margin-bottom: 15px;
-  padding: 15px;
+  padding:15px;
   display: flex;
   flex-direction: column;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
   border-left: 5px solid transparent;
   transition: box-shadow 0.3s;
 }
@@ -298,7 +299,6 @@
   overflow: visible;
 }
 
-
 .todo-due-date{
  font-size: clamp(12px, 1.5vw, 14px);
   color: #999;
@@ -315,7 +315,7 @@
 }
 .options {
   color: #666;
-  background-color: #f0f0f0;
+  background-color: rgba(238, 239, 243, 1);
 }
 
 .todo-item.completed .toggle-complete-btn {
