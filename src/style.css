@@ -1,375 +1,373 @@
-:root {
-  * {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
-  }
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
 
-  body {
-    font-family: Arial, sans-serif;
-    min-height: 100vh;
-    background-color: #ccc;
-    color: #333;
-  }
+body {
+  font-family: Arial, sans-serif;
+  min-height: 100vh;
+  background-color: #ccc;
+  color: #333;
+}
 
-  #app {
-    max-width: 1280px;
-    margin: 0 auto;
-    padding: clamp(0.3rem, 2vw, 2rem);
-    text-align: center;
-  }
+#app {
+  max-width: 1280px;
+  margin: 0 auto;
+  padding: clamp(0.3rem, 2vw, 2rem);
+  text-align: center;
+}
 
+.header {
+  background-color: #ffff00;
+  border-radius: 12px;
+  border-bottom: 1px solid #666;
+  position: relative;
+  cursor: pointer;
+  color: white;
+  padding: 40px 30px 30px 30px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+@media (min-width: 768px) {
   .header {
-    background-color: #ffff00;
-    border-radius: 12px;
-    border-bottom: 1px solid #666;
-    position: relative;
-    cursor: pointer;
-    color: white;
-    padding: 40px 30px 30px 30px;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    padding: 40px 50px 30px 50px;
   }
-  @media (min-width: 768px) {
-    .header {
-      padding: 40px 50px 30px 50px;
-    }
+}
+@media (min-width: 1200px) {
+  .header {
+    padding: 50px 100px 30px 100px;
   }
-  @media (min-width: 1200px) {
-    .header {
-      padding: 50px 100px 30px 100px;
-    }
-  }
+}
 
-  .header h1 {
-    margin: 0;
-    font-size: clamp(18px, 5vw, 28px);
-    color: #666;
-  }
-  .paws {
-    position: absolute;
-    bottom: 25px;
-    left: 10px;
-  }
-  .paws1 {
-    position: absolute;
-    top: 15px;
-    left: 160px;
-  }
-  .paws2 {
-    position: absolute;
-    top: 40px;
-    left: 220px;
-  }
-  .paws-btn {
-    position: absolute;
-    bottom: 10px;
-    right: 80px;
-  }
+.header h1 {
+  margin: 0;
+  font-size: clamp(18px, 5vw, 28px);
+  color: #666;
+}
+.paws {
+  position: absolute;
+  bottom: 25px;
+  left: 10px;
+}
+.paws1 {
+  position: absolute;
+  top: 15px;
+  left: 160px;
+}
+.paws2 {
+  position: absolute;
+  top: 40px;
+  left: 220px;
+}
+.paws-btn {
+  position: absolute;
+  bottom: 10px;
+  right: 80px;
+}
 
-  .cat {
-    position: relative;
-  }
+.cat {
+  position: relative;
+}
 
-  .sleep-symbol {
-    position: absolute;
-    top: -15px;
-    right: 0px;
-    display: flex;
-    font-weight: bold;
-    font-size: 1.2rem;
-    transition: opacity 0.5s ease;
-  }
+.sleep-symbol {
+  position: absolute;
+  top: -15px;
+  right: 0px;
+  display: flex;
+  font-weight: bold;
+  font-size: 1.2rem;
+  transition: opacity 0.5s ease;
+}
 
-  /* slep_________*/
-  .cat #lefteyelid,
-  .cat #righteyelid {
-    display: inline !important;
-  }
-  .cat #eyesdown {
-    display: none !important;
-  }
-  .cat .sleep-symbol {
-    opacity: 1;
-  }
+/* slep_________*/
+.cat #lefteyelid,
+.cat #righteyelid {
+  display: inline !important;
+}
+.cat #eyesdown {
+  display: none !important;
+}
+.cat .sleep-symbol {
+  opacity: 1;
+}
 
-  .cat.awake #lefteyelid,
-  .cat.awake #righteyelid {
-    display: none !important;
-  }
-  .cat.awake #eyesdown {
-    display: block !important;
-  }
-  .cat.awake .sleep-symbol {
-    opacity: 0;
-  }
-  /* ____________ */
+.cat.awake #lefteyelid,
+.cat.awake #righteyelid {
+  display: none !important;
+}
+.cat.awake #eyesdown {
+  display: block !important;
+}
+.cat.awake .sleep-symbol {
+  opacity: 0;
+}
+/* ____________ */
 
-  .main-content {
-    padding: 30px;
-    max-width: 900px;
-    width: 100%;
-    margin: 0 auto;
-  }
+.main-content {
+  padding: 30px;
+  max-width: 900px;
+  width: 100%;
+  margin: 0 auto;
+}
 
-  .hidden {
-    display: none !important;
-  }
+.hidden {
+  display: none !important;
+}
 
-  .todo-item {
-    padding: 10px;
-  }
+.todo-item {
+  padding: 10px;
+}
 
-  .todo-details.edit-mode {
-    display: flex;
-    flex-direction: column;
-    flex-grow: 1;
-    gap: 5px;
-  }
+.todo-details.edit-mode {
+  display: flex;
+  flex-direction: column;
+  flex-grow: 1;
+  gap: 5px;
+}
 
-  .todo-details.edit-mode input[type="text"],
-  .todo-details.edit-mode textarea,
-  .todo-details.edit-mode input[type="date"],
-  .todo-details.edit-mode select {
-    width: 100%;
-    padding: 5px 8px;
-    border: 1px solid #ccc;
-    border-radius: 4px;
+.todo-details.edit-mode input[type="text"],
+.todo-details.edit-mode textarea,
+.todo-details.edit-mode input[type="date"],
+.todo-details.edit-mode select {
+  width: 100%;
+  padding: 5px 8px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
 
-    font-size: 14px;
-  }
+  font-size: 14px;
+}
 
-  .todo-details.edit-mode input[type="date"],
-  .todo-details.edit-mode select {
-    max-width: 150px;
-  }
+.todo-details.edit-mode input[type="date"],
+.todo-details.edit-mode select {
+  max-width: 150px;
+}
 
-  .todo-details.edit-mode textarea {
-    resize: vertical;
-    min-height: 50px;
-  }
+.todo-details.edit-mode textarea {
+  resize: vertical;
+  min-height: 50px;
+}
 
-  .todo-main {
-    display: flex;
-    align-items: flex-start;
-    gap: 10px;
-  }
+.todo-main {
+  display: flex;
+  align-items: flex-start;
+  gap: 10px;
+}
 
-  .todo-actions {
-    display: flex;
-    flex-direction: column;
-    gap: 5px;
-    margin-left: auto;
-  }
+.todo-actions {
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+  margin-left: auto;
+}
 
-  .todo-actions button {
-    padding: 5px 8px;
-    font-size: 14px;
-  }
-  .add-task-container {
-    background-color: #fff;
-    padding: 20px;
-    border-radius: 12px;
-    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
-    margin-bottom: 20px;
-  }
+.todo-actions button {
+  padding: 5px 8px;
+  font-size: 14px;
+}
+.add-task-container {
+  background-color: #fff;
+  padding: 20px;
+  border-radius: 12px;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+  margin-bottom: 20px;
+}
 
-  .add-task-container.active {
-    display: block;
-    animation: fadeIn 0.5s;
-  }
-  .card {
-    padding: 2em;
-  }
-  #add-task-form input,
-  #add-task-form textarea,
-  #add-task-form select {
-    width: 100%;
-    padding: 10px;
-    margin-bottom: 10px;
-    border: 1px solid #ccc;
-    border-radius: 8px;
-    box-sizing: border-box;
-  }
+.add-task-container.active {
+  display: block;
+  animation: fadeIn 0.5s;
+}
+.card {
+  padding: 2em;
+}
+#add-task-form input,
+#add-task-form textarea,
+#add-task-form select {
+  width: 100%;
+  padding: 10px;
+  margin-bottom: 10px;
+  border: 1px solid #ccc;
+  border-radius: 8px;
+  box-sizing: border-box;
+}
 
-  #add-task-form input:focus,
-  #add-task-form textarea:focus,
-  #add-task-form select:focus {
-    border: 2px solid #999;
-    background-color: rgba(238, 239, 243, 1);
-    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-    outline: none;
-  }
-  .read-the-docs {
-    color: #888;
-  }
+#add-task-form input:focus,
+#add-task-form textarea:focus,
+#add-task-form select:focus {
+  border: 2px solid #999;
+  background-color: rgba(238, 239, 243, 1);
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  outline: none;
+}
+.read-the-docs {
+  color: #888;
+}
 
+.form-row {
+  display: flex;
+  gap: 15px;
+  align-items: center;
+  margin-bottom: 15px;
+  flex-direction: row;
+}
+
+@media (max-width: 767px) {
   .form-row {
-    display: flex;
-    gap: 15px;
-    align-items: center;
-    margin-bottom: 15px;
-    flex-direction: row;
-  }
-
-  @media (max-width: 767px) {
-    .form-row {
-      flex-direction: column;
-    }
-  }
-
-  .form-row label {
-    font-weight: bold;
-    color: #666;
-    min-width: 60px;
-  }
-  #add-task-form button[type="submit"] {
-    background-color: #ffff00;
-    font-size: 18px;
-    font-weight: 600;
-    border: 4px solid #ccc;
-    color: #666;
-    padding: 10px 15px;
-    border-radius: 12px;
-    cursor: pointer;
-    transition: background-color 0.3s;
-    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-    transition: box-shadow 0.3s;
-  }
-
-  #add-task-form button[type="submit"]:hover {
-    border-color: #ffff00;
-    background-color: rgba(214, 222, 233, 1);
-    box-shadow: 0 6px 10px rgba(0, 0, 0, 0.15);
-  }
-
-  .todo-item {
-    background-color: white;
-    border-radius: 12px;
-    margin-bottom: 15px;
-    padding: 15px;
-    display: flex;
     flex-direction: column;
-    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
-    border-left: 5px solid transparent;
-    transition: box-shadow 0.3s;
   }
+}
 
-  .todo-item:hover {
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-  }
+.form-row label {
+  font-weight: bold;
+  color: #666;
+  min-width: 60px;
+}
+#add-task-form button[type="submit"] {
+  background-color: #ffff00;
+  font-size: 18px;
+  font-weight: 600;
+  border: 4px solid #ccc;
+  color: #666;
+  padding: 10px 15px;
+  border-radius: 12px;
+  cursor: pointer;
+  transition: background-color 0.3s;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  transition: box-shadow 0.3s;
+}
 
-  .todo-main {
-    display: flex;
-    align-items: center;
-  }
+#add-task-form button[type="submit"]:hover {
+  border-color: #ffff00;
+  background-color: rgba(214, 222, 233, 1);
+  box-shadow: 0 6px 10px rgba(0, 0, 0, 0.15);
+}
 
-  .todo-details {
-    width: 100%;
-    max-width: clamp(250px, 70vw, 550px);
-    display: flex;
-    flex-direction: column;
-    padding: clamp(1rem, 1vw, 1.1rem);
-    overflow: hidden;
-  }
+.todo-item {
+  background-color: white;
+  border-radius: 12px;
+  margin-bottom: 15px;
+  padding: 15px;
+  display: flex;
+  flex-direction: column;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+  border-left: 5px solid transparent;
+  transition: box-shadow 0.3s;
+}
 
-  .todo-title {
-    display: block;
-    font-size: clamp(14px, 2.5vw, 18px);
-    color: #565454;
-    font-weight: bold;
-    margin-bottom: 5px;
-  }
+.todo-item:hover {
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
 
-  .todo-description {
-    transition: max-height 0.3s ease, overflow 0.3s ease;
-  }
+.todo-main {
+  display: flex;
+  align-items: center;
+}
 
-  .todo-description.short {
-    width: clamp(120px, 45vw, 550px);
-    padding: clamp(1.5rem, 2vw, 2rem);
-    white-space: nowrap;
-    overflow: hidden;
-    text-overflow: ellipsis;
-    margin-bottom: 6px;
-  }
+.todo-details {
+  width: 100%;
+  max-width: clamp(250px, 70vw, 550px);
+  display: flex;
+  flex-direction: column;
+  padding: clamp(1rem, 1vw, 1.1rem);
+  overflow: hidden;
+}
 
-  .todo-description.expanded {
-    white-space: normal;
-    overflow: visible;
-    margin-bottom: 6px;
-  }
+.todo-title {
+  display: block;
+  font-size: clamp(14px, 2.5vw, 18px);
+  color: #565454;
+  font-weight: bold;
+  margin-bottom: 5px;
+}
 
-  .todo-due-date {
-    font-size: clamp(12px, 1.5vw, 14px);
-    color: #999;
-  }
+.todo-description {
+  transition: max-height 0.3s ease, overflow 0.3s ease;
+}
 
-  .toggle-complete-btn {
-    background: none;
-    border: none;
-    cursor: pointer;
-    font-size: 20px;
-    color: #ddd;
-    padding: 5px;
-    margin-right: 5px;
-  }
-  .options {
-    color: #666;
-    background-color: rgba(238, 239, 243, 1);
-  }
+.todo-description.short {
+  width: clamp(120px, 45vw, 550px);
+  padding: clamp(1.5rem, 2vw, 2rem);
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  margin-bottom: 6px;
+}
 
-  .todo-item.completed .toggle-complete-btn {
-    color: #08b04e;
-  }
-  .todo-item.completed .todo-title,
-  .todo-item.completed .todo-description {
-    text-decoration: line-through;
-    color: #999;
-  }
+.todo-description.expanded {
+  white-space: normal;
+  overflow: visible;
+  margin-bottom: 6px;
+}
 
-  .todo-item.priority-high {
-    border-left-color: #e64634;
-  }
-  .todo-item.priority-medium {
-    border-left-color: #ffff00;
-  }
-  .todo-item.priority-low {
-    border-left-color: #08b04e;
-  }
-  .todo-actions button {
-    background: none;
-    border: none;
-    color: #08b04e;
-    cursor: pointer;
-    margin-left: 10px;
-    padding: 5px 10px;
-    border-radius: 4px;
-    transition: background-color 0.2s;
-  }
+.todo-due-date {
+  font-size: clamp(12px, 1.5vw, 14px);
+  color: #999;
+}
 
-  .todo-actions button:hover {
-    background-color: #f0f0f0;
-  }
+.toggle-complete-btn {
+  background: none;
+  border: none;
+  cursor: pointer;
+  font-size: 20px;
+  color: #ddd;
+  padding: 5px;
+  margin-right: 5px;
+}
+.options {
+  color: #666;
+  background-color: rgba(238, 239, 243, 1);
+}
 
-  .todo-actions .delete-btn {
-    color: #e74c3c;
-  }
-  .empty-state {
-    text-align: center;
-    color: #08b04e;
-    padding: 30px;
-    background-color: #fff;
-    border-radius: 8px;
-  }
+.todo-item.completed .toggle-complete-btn {
+  color: #08b04e;
+}
+.todo-item.completed .todo-title,
+.todo-item.completed .todo-description {
+  text-decoration: line-through;
+  color: #999;
+}
 
-  .read-more {
-    border: none;
-    margin: 0 auto;
-    max-width: 200px;
-    color: #08b04e;
-    background-color: #fff;
-  }
+.todo-item.priority-high {
+  border-left-color: #e64634;
+}
+.todo-item.priority-medium {
+  border-left-color: #ffff00;
+}
+.todo-item.priority-low {
+  border-left-color: #08b04e;
+}
+.todo-actions button {
+  background: none;
+  border: none;
+  color: #08b04e;
+  cursor: pointer;
+  margin-left: 10px;
+  padding: 5px 10px;
+  border-radius: 4px;
+  transition: background-color 0.2s;
+}
+
+.todo-actions button:hover {
+  background-color: #f0f0f0;
+}
+
+.todo-actions .delete-btn {
+  color: #e74c3c;
+}
+.empty-state {
+  text-align: center;
+  color: #08b04e;
+  padding: 30px;
+  background-color: #fff;
+  border-radius: 8px;
+}
+
+.read-more {
+  border: none;
+  margin: 0 auto;
+  max-width: 200px;
+  color: #08b04e;
+  background-color: #fff;
 }
