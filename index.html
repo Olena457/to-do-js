@@ -1,52 +1,173 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
     <link rel="icon" type="image/svg+xml" href="/vite.svg" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Todo JS</title>
-    
-    <link rel="stylesheet" href="style.css">
-     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css">
+    <title>Todo App</title>
+    <link rel="stylesheet" href="style.css" />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css"
+    />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css"
+    />
   </head>
   <body>
     <div id="app">
-      <header class="header">
-        <h1 class="greeting">Vite Todo App</h1>
-        <button id="show-add-task-btn" title="Addnew task">
-            <i class="fa-solid fa-plus"></i> Add
-        </button>
+      <header id="mouse-detector" class="header">
+        <h1 class="greeting">
+          <span class="paws1">🐾</span>Todo App <span class="paws">🐾</span>
+          <span class="paws2">🐾</span>
+        </h1>
+
+        <div class="cursor-pointer">
+          <div id="cat-element" class="cat sleep">
+            <div class="sleep-symbol">
+              <span class="small">mr</span>
+              <span class="medium">mr</span>
+              <span class="large">mr</span>
+            </div>
+            <div
+              id="cat-icon-container"
+              style="
+                width: 60px;
+                position: absolute;
+                right: 105px;
+                top: -44px;
+                height: 60px;
+              "
+            ></div>
+          </div>
+        </div>
+        <style>
+          .cat {
+            transition: transform 0.3s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+            position: relative;
+            user-select: none;
+          }
+          .cat .sleep-symbol {
+            position: rilative;
+            display: flex;
+            flex-direction: column;
+            top: -58px;
+            right: 120px;
+            font-size: 1rem;
+            color: #626d7f;
+            opacity: 1;
+            transition: opacity 0.3s ease, transform 0.3s ease;
+            pointer-events: none;
+            font-weight: 600;
+          }
+          .small {
+            font-size: 0.8rem;
+          }
+          .medium {
+            font-size: 1rem;
+            .large {
+              font-size: 1.2rem;
+            }
+          }
+
+          .cat.sleep .sleep-symbol {
+            opacity: 1;
+            transform: translateY(0);
+          }
+
+          .cat.sleep .closed-eyes {
+            display: block;
+          }
+          .cat.sleep .awake-eyes {
+            display: none;
+          }
+
+          @keyframes sleep {
+            0% {
+              opacity: 0;
+              transform: scale(0.5) translateY(5px);
+            }
+            10% {
+              opacity: 1;
+              transform: scale(1) translateY(8);
+            }
+            50% {
+              opacity: 1;
+              transform: scale(1) translateY(0);
+            }
+            100% {
+              opacity: 0;
+              transform: scale(0.8) translateY(-5px);
+            }
+          }
+
+          .cat.sleep .sleep-symbol span {
+            position: relative;
+            display: inline-block;
+            opacity: 1;
+            transform: scale(1);
+            animation: sleep 3s ease-in-out infinite;
+          }
+
+          .cat.sleep .sleep-symbol span:nth-child(1) {
+            animation-delay: 1s;
+            margin-right: -10px;
+          }
+
+          .cat.sleep .sleep-symbol span:nth-child(2) {
+            animation-delay: 1.5s;
+            margin-left: -18px;
+          }
+
+          .cat.sleep .sleep-symbol span:nth-child(3) {
+            animation-delay: 2s;
+            margin-right: -8px;
+          }
+
+          .cat.awake .sleep-symbol {
+            opacity: 0;
+            transform: translateY(-15px);
+          }
+          .cat.awake .closed-eyes {
+            display: none;
+          }
+          .cat.awake .awake-eyes {
+            display: block;
+          }
+        </style>
       </header>
 
       <main class="main-content">
         <section class="todo-section">
-          
-          <!-- <h2 id="current-project-name" class="typing">Tasks</h2> -->
-
           <div id="add-task-container" class="add-task-container">
             <form id="add-task-form">
-              <input type="text" id="task-title" placeholder="Name task" required>
-              <textarea placeholder="Description" id="task-description"></textarea>
-              
+              <input
+                type="text"
+                id="task-title"
+                placeholder="Name task"
+                required
+              />
+              <textarea
+                placeholder="Description"
+                id="task-description"
+              ></textarea>
               <div class="form-row">
-                <label for="task-due-date">Term:</label>
-                <input type="date" id="task-due-date"> 
-
-                <label for="task-priority">Priority:</label>
-                <select id="task-priority">
+                <label for="task-due-date" class="label">Term:</label>
+                <input type="date" class="options" id="task-due-date" />
+                <label for="task-priority" class="label">Priority:</label>
+                <select id="task-priority" class="options">
                   <option value="low">Low</option>
                   <option value="medium" selected>Medium</option>
                   <option value="high">High</option>
                 </select>
               </div>
-              <button type="submit">Save</button>
+              <button type="submit">
+                <i class="fa-solid fa-plus"></i>&nbsp;Add
+              </button>
             </form>
           </div>
-          
-          <div id="todo-list" class="todo-list">
-            </div>
-
+          <div id="todo-list" class="todo-list"></div>
         </section>
       </main>
     </div>

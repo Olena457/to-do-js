@@ -1,4 +1,3 @@
-
 export function todoItem(todo, { onDelete, onToggleComplete, onEdit }) {
   const itemDiv = document.createElement("div");
   itemDiv.id = `task-${todo.id}`;
@@ -14,10 +13,13 @@ export function todoItem(todo, { onDelete, onToggleComplete, onEdit }) {
   itemDiv.innerHTML = `
         <div class="todo-main">
             <button class="toggle-complete-btn">${statusIcon}</button>
-            
             <div class="todo-details view-mode">
                 <span class="todo-title">${todo.title}</span>
-                <p class="todo-description">${todo.description}</p>
+               <p class="todo-description short">
+              ${todo.description}
+           </p>
+
+         <button class="read-more" type="button">More..</button>
                 <span class="todo-due-date">📅 ${todo.dueDate}</span>
             </div>
             
@@ -34,13 +36,13 @@ export function todoItem(todo, { onDelete, onToggleComplete, onEdit }) {
             
             <div class="todo-actions">
                 <button class="edit-btn" title="Edit">
-                    <i class="fa-solid fa-pen-to-square"></i> Edit
+                    <i class="fa-solid fa-pen-to-square"></i>Edit
                 </button>
                 <button class="save-edit-btn hidden" title="Save">
-                    <i class="fa-solid fa-floppy-disk"></i> Save
+                    <i class="fa-solid fa-floppy-disk"></i>Save
                 </button>
                 <button class="delete-btn" title="delit">
-                    <i class="fa-solid fa-trash"></i>del
+                    <i class="fa-solid fa-trash"></i>Delit
                 </button>
             </div>
         </div>
