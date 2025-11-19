@@ -14,6 +14,7 @@ export const createTodo = (
   dueDate,
   priority,
   completed,
+  isExpanded: false,
 });
 
 export const restoreTodo = (data) => ({
@@ -23,4 +24,5 @@ export const restoreTodo = (data) => ({
   dueDate: data.dueDate,
   priority: data.priority,
   completed: data.completed,
+  isExpanded: data.isExpanded || false,
 });

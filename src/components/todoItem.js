@@ -1,7 +1,13 @@
 export function todoItem(todo, { onDelete, onToggleComplete, onEdit }) {
   const itemDiv = document.createElement("div");
   itemDiv.id = `task-${todo.id}`;
+  itemDiv.dataset.id = todo.id;
 
+  // ____expanded
+const isExpanded = todo.isExpanded || false;
+const descriptionClass = isExpanded ? "expanded" : "short";
+const buttonText = isExpanded ? "Less.." : "More..";
+  
   itemDiv.className = `todo-item ${
     todo.completed ? "completed" : ""
   } priority-${todo.priority} animate__animated animate__fadeIn`;
@@ -15,11 +21,10 @@ export function todoItem(todo, { onDelete, onToggleComplete, onEdit }) {
             <button class="toggle-complete-btn">${statusIcon}</button>
             <div class="todo-details view-mode">
                 <span class="todo-title">${todo.title}</span>
-               <p class="todo-description short">
-              ${todo.description}
+<p class="todo-description ${descriptionClass}">              ${todo.description}
            </p>
 
-         <button class="read-more" type="button">More..</button>
+         <button class="read-more" type="button">${buttonText}</button>
                 <span class="todo-due-date">📅 ${todo.dueDate}</span>
             </div>
             

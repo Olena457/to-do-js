@@ -3,29 +3,6 @@ import { saveState } from "../utils/storage";
 import { createTodo } from "../models/createTodo.js";
 import { todoItem } from "../components/todoItem.js";
 
-export function handleEditTodo(
-  taskId,
-  newTitle,
-  newDescription,
-  newDueDate,
-  newPriority,
-  appState,
-  DOM,
-  handlers
-) {
-  const todo = appState.todos.find((t) => t.id === taskId);
-
-  if (todo) {
-    todo.title = newTitle;
-    todo.description = newDescription;
-    todo.dueDate = newDueDate;
-    todo.priority = newPriority;
-
-    saveState(appState);
-    renderTodos(appState, DOM, handlers);
-  }
-}
-
 export function renderTodos(appState, DOM, handlers) {
   const { todoListContainer, currentProjectName } = DOM;
 
@@ -77,6 +54,7 @@ export function handleAddTodo(event, appState, DOM, handlers) {
   if (!title) return alert("Name task required");
 
   const newTodo = createTodo(title, description, dueDate, priority);
+  newTodo.isExpanded = false;
 
   appState.todos.unshift(newTodo);
   saveState(appState);
@@ -93,9 +71,10 @@ export function handleDeleteTodo(taskId, appState, DOM, handlers) {
   if (taskElement) {
     taskElement.classList.add("animate__animated", "animate__tada");
 
+    appState.todos = appState.todos.filter((todo) => todo.id !== taskId);
+    saveState(appState);
+
     setTimeout(() => {
-      appState.todos = appState.todos.filter((todo) => todo.id !== taskId);
-      saveState(appState);
       renderTodos(appState, DOM, handlers);
     }, 1500);
   }
@@ -106,6 +85,29 @@ export function handleToggleComplete(taskId, appState, DOM, handlers) {
 
   if (todo) {
     todo.completed = !todo.completed;
+    saveState(appState);
+    renderTodos(appState, DOM, handlers);
+  }
+}
+
+export function handleEditTodo(
+  taskId,
+  newTitle,
+  newDescription,
+  newDueDate,
+  newPriority,
+  appState,
+  DOM,
+  handlers
+) {
+  const todo = appState.todos.find((t) => t.id === taskId);
+
+  if (todo) {
+    todo.title = newTitle;
+    todo.description = newDescription;
+    todo.dueDate = newDueDate;
+    todo.priority = newPriority;
+
     saveState(appState);
     renderTodos(appState, DOM, handlers);
   }

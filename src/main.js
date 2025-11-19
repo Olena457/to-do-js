@@ -1,6 +1,6 @@
 
 import "./style.css";
-import { loadState } from "./utils/storage.js";
+import { loadState, saveState } from "./utils/storage.js";
 
 
 const CAT_SVG_CODE = `
@@ -141,17 +141,36 @@ const handlers = {
   handleToggleComplete: originalHandlers.handleToggleComplete,
   handleEditTodo: originalHandlers.handleEditTodo,
 };
+// more /less
 document.addEventListener("click", (e) => {
   if (e.target.matches(".read-more")) {
     const container = e.target.closest(".todo-details");
     const desc = container.querySelector(".todo-description");
 
+    const todoItem = e.target.closest(".todo-item");
+    if (!todoItem) return;
+
+    const todoId = todoItem.dataset.id;
+
     const expanded = desc.classList.toggle("expanded");
     desc.classList.toggle("short", !expanded);
 
-    e.target.textContent = expanded ? "Less.." : "More..";
+    e.target.textContent = expanded ? "More.." : "Less..";
+
+    if (appState.todos && todoId) {
+      const idToFind = todoId;
+      const todoToUpdate = appState.todos.find(
+        (todo) => String(todo.id) === idToFind
+      );
+
+      if (todoToUpdate) {
+        todoToUpdate.isExpanded = expanded;
+        saveState(appState);
+      }
+    }
   }
 });
+
 
 renderTodos(appState, DOM, handlers);
 
